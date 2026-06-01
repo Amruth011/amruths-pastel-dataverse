@@ -21,7 +21,7 @@ const AboutSection = () => {
         <div className="max-w-4xl mx-auto">
           <SectionReveal>
             <p className="font-mono text-xs text-primary mb-4 tracking-widest uppercase">About</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-8 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-8 tracking-tight text-heading">
               Engineering AI that solves real problems.
             </h2>
           </SectionReveal>
@@ -39,6 +39,7 @@ const AboutSection = () => {
               </p>
 
               <div className="pt-4 space-y-3">
+                <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-widest">Education</p>
                 {[
                   { num: '01', text: 'B.Tech AI & Data Science — Reva University', year: '2023–Present' },
                   { num: '02', text: 'Diploma EEE — D S Dinakar National Polytechnic', year: '2020–2023' },
@@ -49,7 +50,6 @@ const AboutSection = () => {
                       <span className="text-foreground/90">{edu.text}</span>
                       <span className="text-muted-foreground ml-auto font-mono text-xs">{edu.year}</span>
                     </div>
-                    <p className="text-primary/70 font-mono text-xs ml-10">CGPA: {edu.cgpa}</p>
                   </div>
                 ))}
               </div>
