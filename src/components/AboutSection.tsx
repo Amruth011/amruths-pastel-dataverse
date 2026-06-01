@@ -41,7 +41,7 @@ const AboutSection = () => {
               <div className="pt-4 space-y-3">
                 <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-widest">Education</p>
                 {[
-                  { num: '01', text: 'B.Tech AI & Data Science — Reva University', year: '2023–May 2026' },
+                  { num: '01', text: 'B.Tech AI & Data Science — Reva University', year: 'Dec 2023 – May 2026' },
                   { num: '02', text: 'Diploma EEE — D S Dinakar National Polytechnic', year: '2020–2023' },
                 ].map((edu) => (
                   <div key={edu.num} className="group hover:bg-accent/30 px-3 py-2 -mx-3 rounded-md transition-colors duration-200">
