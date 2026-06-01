@@ -122,6 +122,7 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
           onClick={() => scrollToSection('about')}
+          aria-label="Scroll to about section"
           className="text-muted-foreground/30 hover:text-primary/60 transition-colors duration-300"
         >
           <motion.div
