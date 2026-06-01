@@ -7,9 +7,9 @@ const InternshipSection = () => {
     {
       company: 'iStudio',
       role: 'Data Science Intern',
-      period: 'February 2026 – Present',
+      period: 'February 2026 – May 2026',
       mode: 'Virtual / Remote',
-      current: true,
+      current: false,
       description: [
         'Built a sales forecasting model using Python and scikit-learn, achieving 92% accuracy through feature engineering and hyperparameter tuning.',
         'Designed and deployed interactive Streamlit dashboards that visualized key business metrics, enabling data-driven decision-making for stakeholders.',
