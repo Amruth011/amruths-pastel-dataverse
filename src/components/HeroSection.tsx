@@ -47,6 +47,7 @@ const HeroSection = () => {
             M
             <span className="absolute -inset-2 bg-primary/5 blur-lg rounded-full" />
           </span>
+          <span className="sr-only"> — AI & Data Science Engineer</span>
         </motion.h1>
 
         {/* Title */}
