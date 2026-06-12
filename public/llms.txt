@@ -1,0 +1,9 @@
+# Amruth Kumar M
+
+> Portfolio of Amruth Kumar M — AI & Data Science Engineer building RAG pipelines, Indic-language AI, and end-to-end MLOps systems.
+
+Amruth Kumar M is an AI & Data Science Engineer specializing in machine learning, predictive modeling, and production-grade AI products. The site showcases projects, experience, simulations, skills, certifications, and contact information.
+
+## Pages
+
+- [Home](/): Hero, about, experience, simulations, projects, skills, certifications, GitHub activity, and contact.
