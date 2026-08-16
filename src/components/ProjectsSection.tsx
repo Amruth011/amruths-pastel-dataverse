@@ -21,30 +21,6 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: 'Customer Churn Prediction & Retention ROI System',
-    description: 'End-to-end machine learning system for predicting customer churn and optimizing retention campaign ROI.',
-    technologies: ['Python', 'XGBoost', 'SHAP', 'Streamlit', 'Docker'],
-    githubUrl: 'https://github.com/Amruth011/customer-churn-prediction-retention-roi',
-    demoUrl: 'https://customer-churn-prediction-retention-roi-9gkae6bppwug3sjpykbcgd.streamlit.app/',
-    category: 'Machine Learning',
-    icon: <TrendingUp className="h-5 w-5" />,
-    highlights: [
-      'Built a full ML pipeline (Excel → EDA → feature engineering → model benchmarking → deployment) achieving AUC-ROC 0.9989 and 98.76% accuracy on imbalanced churn data.',
-      'Identified 937 high-risk customers worth ₹47.4L annual revenue and discovered 41.9% churn in the 0–3 month cohort using cohort analysis.',
-      'Developed a Streamlit decision-support dashboard with SHAP explainability, a 12-factor What-If simulator, and ROI optimizer projecting 224% campaign ROI.',
-    ],
-    metrics: [
-      { label: 'AUC-ROC', value: '0.9989' },
-      { label: 'Accuracy', value: '98.76%' },
-      { label: 'Campaign ROI', value: '224%' },
-      { label: 'Revenue at Risk', value: '₹47.4L' },
-    ],
-    problem: 'High customer churn rates leading to significant revenue loss with no systematic way to identify at-risk customers.',
-    solution: 'End-to-end ML pipeline with XGBoost classification, SHAP explainability, and a decision-support dashboard for targeted retention.',
-    impact: 'Identified 937 high-risk customers, projected 224% ROI on retention campaigns, and enabled data-driven retention strategy.',
-    architecture: ['Data Ingestion', 'EDA & Validation', 'Feature Engineering', 'Model Training', 'SHAP Analysis', 'Dashboard Deploy'],
-  },
-  {
     title: "Kannada RAG Agent — Hybrid Search · Reranking · Voice",
     description: "Scanned Kannada novel in → page-cited, hallucination-guarded answers + Kannada voice out. RAGAS-validated.",
     technologies: ["Python", "FastAPI", "ChromaDB", "Rank-BM25", "RRF", "Cross-Encoder", "Surya OCR", "RAGAS", "Sarvam AI TTS", "Groq", "Gemini"],
@@ -68,6 +44,30 @@ const projects: Project[] = [
     solution: "Hybrid BM25+dense retrieval fused via RRF, cross-encoder reranked, deterministic page routing, and a Gemini→Groq fallback chain over a Surya-OCR corpus.",
     impact: "0.92 faithfulness / 0.89 recall on a 50-query golden set. Page-cited answers + Kannada voice at 2.8s P50, under 600MB RAM on serverless.",
     architecture: ["Surya OCR", "Chunk + Meta", "BM25 ∥ ChromaDB", "RRF", "Cross-Encoder", "LLM Fallback", "Sarvam TTS"],
+  },
+  {
+    title: 'Customer Churn Prediction & Retention ROI System',
+    description: 'End-to-end machine learning system for predicting customer churn and optimizing retention campaign ROI.',
+    technologies: ['Python', 'XGBoost', 'SHAP', 'Streamlit', 'Docker'],
+    githubUrl: 'https://github.com/Amruth011/customer-churn-prediction-retention-roi',
+    demoUrl: 'https://customer-churn-prediction-retention-roi-9gkae6bppwug3sjpykbcgd.streamlit.app/',
+    category: 'Machine Learning',
+    icon: <TrendingUp className="h-5 w-5" />,
+    highlights: [
+      'Built a full ML pipeline (Excel → EDA → feature engineering → model benchmarking → deployment) achieving AUC-ROC 0.9989 and 98.76% accuracy on imbalanced churn data.',
+      'Identified 937 high-risk customers worth ₹47.4L annual revenue and discovered 41.9% churn in the 0–3 month cohort using cohort analysis.',
+      'Developed a Streamlit decision-support dashboard with SHAP explainability, a 12-factor What-If simulator, and ROI optimizer projecting 224% campaign ROI.',
+    ],
+    metrics: [
+      { label: 'AUC-ROC', value: '0.9989' },
+      { label: 'Accuracy', value: '98.76%' },
+      { label: 'Campaign ROI', value: '224%' },
+      { label: 'Revenue at Risk', value: '₹47.4L' },
+    ],
+    problem: 'High customer churn rates leading to significant revenue loss with no systematic way to identify at-risk customers.',
+    solution: 'End-to-end ML pipeline with XGBoost classification, SHAP explainability, and a decision-support dashboard for targeted retention.',
+    impact: 'Identified 937 high-risk customers, projected 224% ROI on retention campaigns, and enabled data-driven retention strategy.',
+    architecture: ['Data Ingestion', 'EDA & Validation', 'Feature Engineering', 'Model Training', 'SHAP Analysis', 'Dashboard Deploy'],
   },
   {
     title: 'Social Media Sentiment Analysis — Distributed PySpark Pipeline',
