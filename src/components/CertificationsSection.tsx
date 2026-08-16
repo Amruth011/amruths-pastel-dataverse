@@ -17,14 +17,14 @@ const CertificationsSection = () => {
     {
       title: 'Professional Certifications',
       certs: [
-        { name: 'AI Engineer for Data Scientists Associate', platform: 'DataCamp', date: 'Jul 21, 2025', why: 'Directly maps to LLM Engineer, AI Engineer roles — Llama 3, fine-tuning, production AI', certId: 'AEDS0014096833007' },
-        { name: 'Salesforce Certified: Agentforce Specialist', platform: 'Salesforce', date: 'Dec 6, 2025', why: 'Agentic AI is the hottest emerging skill — agent architecture, reasoning engines, trust layers', certId: 'Cert7141976_AgentforceSpecialist_20251206' },
         { name: 'Oracle Certified Foundations Associate: Agentic AI', platform: 'Oracle University', date: 'Jul 15, 2026', why: 'Agentic AI foundations from Oracle — strengthens AI agent/reasoning systems profile', certId: '101440766AAI26OFA' },
+        { name: 'Salesforce Certified: Agentforce Specialist', platform: 'Salesforce', date: 'Dec 6, 2025', why: 'Agentic AI is the hottest emerging skill — agent architecture, reasoning engines, trust layers', certId: 'Cert7141976_AgentforceSpecialist_20251206' },
         { name: 'IBM Machine Learning', platform: 'Coursera (IBM)', date: 'Sep 12, 2025', why: 'Core ML credential covering full spectrum — supervised, unsupervised, DL, RL' },
+        { name: 'AI Engineer for Data Scientists Associate', platform: 'DataCamp', date: 'Jul 21, 2025', why: 'Directly maps to LLM Engineer, AI Engineer roles — Llama 3, fine-tuning, production AI', certId: 'AEDS0014096833007' },
+        { name: 'Microsoft Azure Data Fundamentals DP-900', platform: 'Coursera (Microsoft)', date: 'Jul 11, 2025', why: 'Azure appeared in 38 jobs — Microsoft cert carries strong enterprise weight' },
         { name: 'Google Advanced Data Analytics', platform: 'Coursera (Google)', date: 'Jul 6, 2025', why: 'Google-backed, covers Python + Stats + Regression + ML — strong ATS signal' },
         { name: 'Meta Data Analyst', platform: 'Coursera (Meta)', date: 'Jul 5, 2025', why: 'Meta brand, covers SQL + Python + Statistics — essential DS fundamentals' },
         { name: 'Oracle Cloud Infrastructure 2025 AI Foundations Associate', platform: 'Oracle University', date: 'Apr 7, 2025', why: 'GenAI + LLM + Responsible AI + OCI — enterprise cloud AI credential' },
-        { name: 'Microsoft Azure Data Fundamentals DP-900', platform: 'Coursera (Microsoft)', date: 'Jul 11, 2025', why: 'Azure appeared in 38 jobs — Microsoft cert carries strong enterprise weight' },
       ] as Cert[],
     },
     {
@@ -38,9 +38,9 @@ const CertificationsSection = () => {
     {
       title: 'Data & Analytics Tools',
       certs: [
-        { name: 'Fundamentals of R Programming & Statistical Analysis', platform: 'Infosys Springboard', date: 'Oct 3, 2024', why: 'R is valued specifically in Data Scientist roles (stats-heavy positions)' },
-        { name: 'R Programming — Data Frames, Factors & Strings', platform: 'Infosys Springboard', date: 'Oct 4, 2024', why: 'Complements the fundamentals cert — shows depth in R' },
         { name: 'Power BI Workshop', platform: 'MiVi Technologies', date: 'Nov 5, 2024', why: 'Power BI is a recurring tool in DS/Analyst roles — dashboard skills' },
+        { name: 'R Programming — Data Frames, Factors & Strings', platform: 'Infosys Springboard', date: 'Oct 4, 2024', why: 'Complements the fundamentals cert — shows depth in R' },
+        { name: 'Fundamentals of R Programming & Statistical Analysis', platform: 'Infosys Springboard', date: 'Oct 3, 2024', why: 'R is valued specifically in Data Scientist roles (stats-heavy positions)' },
       ] as Cert[],
     },
     {
@@ -54,11 +54,11 @@ const CertificationsSection = () => {
       title: 'Job Simulations',
       certs: [
         { name: 'GenAI Powered Data Analytics', platform: 'Tata iQ', date: 'Sep 19, 2025', why: '', skills: ['AI Strategy', 'EDA', 'Predictive Analytics', 'Ethical AI', 'Agentic AI', 'Process Automation'] },
-        { name: 'GenAI — AI-Powered Financial Chatbot', platform: 'BCG X', date: 'Apr 27, 2025', why: '', skills: ['AI Development', 'NLP', 'Python', 'Financial Analysis', 'Rule-based Logic'] },
-        { name: 'Data Analytics', platform: 'Deloitte Australia', date: 'Jun 17, 2025', why: '', skills: ['Data Analysis', 'Tableau', 'Python', 'Data Modeling', 'Log Analysis'] },
-        { name: 'Data Analytics and Visualization', platform: 'Accenture', date: 'Mar 8, 2025', why: '', skills: ['Data Analysis', 'Data Modeling', 'Storytelling', 'Excel', 'PowerPoint'] },
-        { name: 'Power BI', platform: 'PwC Switzerland', date: 'Mar 9, 2025', why: '', skills: ['Business Intelligence', 'KPI Development', 'Power BI', 'Quantitative Analysis'] },
         { name: 'Developer & Technology', platform: 'Accenture UK', date: 'Jun 28, 2025', why: '', skills: ['SDLC', 'Agile', 'Code Debugging', 'Pseudocode', 'Algorithmic Thinking'] },
+        { name: 'Data Analytics', platform: 'Deloitte Australia', date: 'Jun 17, 2025', why: '', skills: ['Data Analysis', 'Tableau', 'Python', 'Data Modeling', 'Log Analysis'] },
+        { name: 'GenAI — AI-Powered Financial Chatbot', platform: 'BCG X', date: 'Apr 27, 2025', why: '', skills: ['AI Development', 'NLP', 'Python', 'Financial Analysis', 'Rule-based Logic'] },
+        { name: 'Power BI', platform: 'PwC Switzerland', date: 'Mar 9, 2025', why: '', skills: ['Business Intelligence', 'KPI Development', 'Power BI', 'Quantitative Analysis'] },
+        { name: 'Data Analytics and Visualization', platform: 'Accenture', date: 'Mar 8, 2025', why: '', skills: ['Data Analysis', 'Data Modeling', 'Storytelling', 'Excel', 'PowerPoint'] },
       ] as Cert[],
     },
   ];
