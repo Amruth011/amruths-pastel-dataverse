@@ -19,6 +19,7 @@ const CertificationsSection = () => {
       certs: [
         { name: 'AI Engineer for Data Scientists Associate', platform: 'DataCamp', date: 'Jul 21, 2025', why: 'Directly maps to LLM Engineer, AI Engineer roles — Llama 3, fine-tuning, production AI', certId: 'AEDS0014096833007' },
         { name: 'Salesforce Certified: Agentforce Specialist', platform: 'Salesforce', date: 'Dec 6, 2025', why: 'Agentic AI is the hottest emerging skill — agent architecture, reasoning engines, trust layers', certId: 'Cert7141976_AgentforceSpecialist_20251206' },
+        { name: 'Oracle Certified Foundations Associate: Agentic AI', platform: 'Oracle University', date: 'Jul 15, 2026', why: 'Agentic AI foundations from Oracle — strengthens AI agent/reasoning systems profile', certId: '101440766AAI26OFA' },
         { name: 'IBM Machine Learning', platform: 'Coursera (IBM)', date: 'Sep 12, 2025', why: 'Core ML credential covering full spectrum — supervised, unsupervised, DL, RL' },
         { name: 'Google Advanced Data Analytics', platform: 'Coursera (Google)', date: 'Jul 6, 2025', why: 'Google-backed, covers Python + Stats + Regression + ML — strong ATS signal' },
         { name: 'Meta Data Analyst', platform: 'Coursera (Meta)', date: 'Jul 5, 2025', why: 'Meta brand, covers SQL + Python + Statistics — essential DS fundamentals' },
