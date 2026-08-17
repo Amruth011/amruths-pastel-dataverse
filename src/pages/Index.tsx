@@ -22,7 +22,8 @@ const Index = () => {
         transition={{ duration: 0.5 }}
         className="min-h-screen bg-background"
       >
-        <Header />
+        <AnnouncementBanner onOpenChange={setBannerOpen} />
+        <Header bannerOffset={bannerOpen} />
         <main>
           <HeroSection />
           <AboutSection />
