@@ -12,7 +12,7 @@ const Header = () => {
       setIsScrolled(window.scrollY > 50);
 
       // Detect active section
-      const sections = ['home', 'about', 'skills', 'internship', 'projects', 'experience', 'certifications', 'contact'];
+      const sections = ['home', 'about', 'skills', 'internship', 'projects', 'certifications', 'contact'];
       const reversed = [...sections].reverse();
       for (const id of reversed) {
         const el = document.getElementById(id);
