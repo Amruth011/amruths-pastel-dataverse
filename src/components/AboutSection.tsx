@@ -35,13 +35,13 @@ const AboutSection = () => {
                 I'm drawn to problems where ML can automate complex decision-making: turning unstructured data into actionable intelligence, orchestrating multi-step AI agents, and leveraging vector search for semantic understanding at scale.
               </p>
               <p className="text-muted-foreground/80 leading-relaxed text-sm">
-                Graduated with B.Tech in AI & Data Science, I'm actively shipping projects and seeking roles where I can contribute to production-grade AI products. Based in Bangalore, open to relocation and remote roles.
+                Completed B.Tech in AI & Data Science at Reva University (coursework completed May 2026, degree conferral November 2026). Available to join immediately.
               </p>
 
               <div className="pt-4 space-y-3">
                 <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-widest">Education</p>
                 {[
-                  { num: '01', text: 'B.Tech AI & Data Science — Reva University', year: 'Dec 2023 – May 2026' },
+                  { num: '01', text: 'B.Tech AI & Data Science — Reva University', year: 'Dec 2023 – May 2026 · Degree conferral Nov 2026' },
                   { num: '02', text: 'Diploma EEE — D S Dinakar National Polytechnic', year: '2020–2023' },
                 ].map((edu) => (
                   <div key={edu.num} className="group hover:bg-accent/30 px-3 py-2 -mx-3 rounded-md transition-colors duration-200">
