@@ -12,7 +12,7 @@ const Header = ({ bannerOffset = false }: { bannerOffset?: boolean }) => {
       setIsScrolled(window.scrollY > 50);
 
       // Detect active section
-      const sections = ['home', 'about', 'skills', 'internship', 'projects', 'certifications', 'contact'];
+      const sections = ['home', 'about', 'skills', 'internship', 'projects', 'blog', 'certifications', 'contact'];
       const reversed = [...sections].reverse();
       for (const id of reversed) {
         const el = document.getElementById(id);
@@ -36,6 +36,7 @@ const Header = ({ bannerOffset = false }: { bannerOffset?: boolean }) => {
     { name: 'Skills', id: 'skills' },
     { name: 'Experience', id: 'internship' },
     { name: 'Projects', id: 'projects' },
+    { name: 'Blog', id: 'blog' },
     { name: 'Certifications', id: 'certifications' },
     { name: 'Contact', id: 'contact' },
   ];
