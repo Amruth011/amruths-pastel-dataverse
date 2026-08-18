@@ -29,11 +29,21 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border/60 bg-card/30 backdrop-blur-md mb-8"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border/60 bg-card/30 backdrop-blur-md mb-3"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-ring text-emerald-500" />
-          <span className="text-xs font-mono text-muted-foreground">Available for opportunities</span>
+          <span className="text-xs font-mono text-muted-foreground">Open to Work — Immediate Joiner</span>
         </motion.div>
+
+        {/* Role / location subline */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="text-xs md:text-sm text-muted-foreground/70 mb-8"
+        >
+          AI Engineer · ML Engineer · GenAI / Data Science roles | Bangalore / Remote / Relocation
+        </motion.p>
 
         {/* Name */}
         <motion.h1
