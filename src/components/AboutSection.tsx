@@ -53,6 +53,16 @@ const AboutSection = () => {
                   </div>
                 ))}
               </div>
+
+              <div className="pt-2">
+                <div className="rounded-lg border border-border bg-card/40 p-4 space-y-3">
+                  <p className="text-xs font-mono text-primary uppercase tracking-widest">Now — Aug 2026</p>
+                  <div className="space-y-2 text-sm text-muted-foreground/90 leading-relaxed">
+                    <p>🔨 Building: Lumina JD Scanner (live) — LLM-based JD decoding, skill-gap analysis & resume tailoring</p>
+                    <p>🎯 Seeking: Full-time AI Engineer / GenAI roles — immediate joiner</p>
+                  </div>
+                </div>
+              </div>
             </SectionReveal>
 
             <SectionReveal className="md:col-span-2" delay={0.2} direction="right">
