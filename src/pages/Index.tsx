@@ -11,6 +11,7 @@ import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import AnnouncementBanner from '@/components/AnnouncementBanner';
+import ArchitecturePipeline from '@/components/ArchitecturePipeline';
 
 const Index = () => {
   const [bannerOpen, setBannerOpen] = useState(false);
