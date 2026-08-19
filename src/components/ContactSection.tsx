@@ -123,12 +123,12 @@ const ContactSection = () => {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full mt-4 py-3 px-6 border-2 border-slate-700 rounded-lg text-slate-300 font-medium hover:border-yellow-500 hover:text-yellow-500 transition-all duration-200 flex items-center justify-center gap-2"
+                  className="w-full mt-4 py-3 px-6 border-2 border-primary/50 rounded-lg text-primary/80 font-medium hover:border-primary hover:text-primary transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   <Calendar className="h-4 w-4" />
                   Schedule a 15-min Chat
                 </a>
-                <p className="text-xs text-slate-500 text-center mt-2">
+                <p className="text-xs text-primary/60 text-center mt-2">
                   Pick a time that works for you →
                 </p>
               </form>
