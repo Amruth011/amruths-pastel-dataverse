@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, MapPin, ArrowUpRight, Send, User, MessageSquare, Phone } from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, ArrowUpRight, Send, User, MessageSquare, Phone, Calendar } from 'lucide-react';
 import SectionReveal from './SectionReveal';
 
 const WEB3FORMS_ACCESS_KEY = 'fbd98e34-18ef-4409-bef1-a88c05b827af';
@@ -119,6 +119,18 @@ const ContactSection = () => {
                   <Send className="h-4 w-4" />
                   {loading ? 'Sending...' : submitted ? '✓ Message Sent!' : 'Send Message'}
                 </motion.button>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full mt-4 py-3 px-6 border-2 border-slate-700 rounded-lg text-slate-300 font-medium hover:border-yellow-500 hover:text-yellow-500 transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  <Calendar className="h-4 w-4" />
+                  Schedule a 15-min Chat
+                </a>
+                <p className="text-xs text-slate-500 text-center mt-2">
+                  Pick a time that works for you →
+                </p>
               </form>
             </SectionReveal>
 
