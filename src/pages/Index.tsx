@@ -11,7 +11,6 @@ import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import AnnouncementBanner from '@/components/AnnouncementBanner';
-import ArchitecturePipeline from '@/components/ArchitecturePipeline';
 
 const Index = () => {
   const [bannerOpen, setBannerOpen] = useState(false);
@@ -35,13 +34,6 @@ const Index = () => {
           <BlogSection />
           <CertificationsSection />
           <ContactSection />
-          <section className="py-12 relative">
-            <div className="container mx-auto px-4">
-              <ArchitecturePipeline
-                steps={['Surya OCR', 'Chunk + Meta', 'BM25 ∥ ChromaDB', 'RRF', 'Cross-Encoder', 'LLM Fallback', 'Sarvam TTS']}
-              />
-            </div>
-          </section>
         </main>
         <Footer />
       </motion.div>
