@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 
-const Header = ({ bannerOffset = false }: { bannerOffset?: boolean }) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -46,10 +46,11 @@ const Header = ({ bannerOffset = false }: { bannerOffset?: boolean }) => {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-      className={`fixed ${bannerOffset ? 'top-12' : 'top-0'} w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         isScrolled ? 'bg-background/60 backdrop-blur-2xl border-b border-border/50' : 'bg-transparent'
       }`}
     >
+
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16">
           <button onClick={() => scrollToSection('home')} className="font-mono text-sm font-bold tracking-tight text-primary hover:opacity-80 transition-all duration-300 hover:tracking-wider">
