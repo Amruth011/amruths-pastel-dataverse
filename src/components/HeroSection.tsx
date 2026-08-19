@@ -1,17 +1,14 @@
 import { motion } from 'framer-motion';
-import { Github, FileText, ArrowDown, Download, Send } from 'lucide-react';
-import AnimatedText from './AnimatedText';
+import { Github, ArrowDown, Send } from 'lucide-react';
 import ParticleField from './ParticleField';
 
 const HeroSection = () => {
-  const typingTexts = ['Machine Learning', 'AI Engineering', 'Data Science', 'Automation Systems'];
-
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden py-32">
       {/* Layered backgrounds */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030301] via-[#030301] to-[#0e0f09]/80" />
       <div className="absolute inset-0 bg-grid opacity-20" />
@@ -24,28 +21,18 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-white/[0.003] rounded-full blur-[100px]" />
 
       <div className="relative z-10 container mx-auto px-4 text-center pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
-        {/* Status badge */}
+        {/* Status pill */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border/60 bg-card/30 backdrop-blur-md mb-3"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 backdrop-blur-sm mb-10"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-ring text-emerald-500" />
-          <span className="text-xs font-mono text-muted-foreground">Open to Work — Immediate Joiner</span>
+          <span className="text-xs font-medium text-emerald-400/90">Available for immediate join</span>
         </motion.div>
 
-        {/* Role / location subline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="text-xs md:text-sm text-muted-foreground/70 mb-8"
-        >
-          AI Engineer · ML Engineer · GenAI / Data Science roles | Bangalore / Remote / Relocation
-        </motion.p>
-
-        {/* Name */}
+        {/* Main Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -60,47 +47,32 @@ const HeroSection = () => {
           <span className="sr-only"> — AI & Data Science Engineer</span>
         </motion.h1>
 
-        {/* Title */}
+        {/* Sub-heading */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="text-lg md:text-xl text-muted-foreground mb-3 font-medium tracking-tight"
+          transition={{ duration: 0.7, delay: 0.45 }}
+          className="text-lg md:text-xl text-primary font-medium tracking-tight mb-8"
         >
           AI & Data Science Engineer
         </motion.p>
 
-        {/* Subtitle */}
+        {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="text-sm md:text-base text-muted-foreground/60 max-w-xl mx-auto mb-8"
+          transition={{ duration: 0.7, delay: 0.55 }}
+          className="text-sm md:text-base text-muted-foreground/70 max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          Shipping production RAG pipelines, Indic-language AI, and end-to-end MLOps — from prototype to deploy.
+          Built & Deployed production RAG pipelines, Indic-language AI, and end-to-end AI systems — from prototype to production.
         </motion.p>
-
-        {/* Typing animation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="h-10 flex items-center justify-center mb-12"
-        >
-          <span className="font-mono text-sm md:text-base">
-            <span className="text-muted-foreground/40 mr-2">{'>'}</span>
-            <span className="text-primary/90">
-              <AnimatedText texts={typingTexts} />
-            </span>
-          </span>
-        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1 }}
-          className="flex flex-wrap items-center justify-center gap-3 mb-20"
+          transition={{ duration: 0.7, delay: 0.7 }}
+          className="flex flex-wrap items-center justify-center gap-3 mb-24"
         >
           <button
             onClick={() => scrollToSection('projects')}
@@ -130,7 +102,7 @@ const HeroSection = () => {
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
+          transition={{ delay: 1.1 }}
           onClick={() => scrollToSection('about')}
           aria-label="Scroll to about section"
           className="text-muted-foreground/30 hover:text-primary/60 transition-colors duration-300"
@@ -148,3 +120,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+

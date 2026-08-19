@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
@@ -10,11 +9,8 @@ import InternshipSection from '@/components/InternshipSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import AnnouncementBanner from '@/components/AnnouncementBanner';
 
 const Index = () => {
-  const [bannerOpen, setBannerOpen] = useState(false);
-
   return (
     <AnimatePresence>
       <motion.div
@@ -23,8 +19,7 @@ const Index = () => {
         transition={{ duration: 0.5 }}
         className="min-h-screen bg-background"
       >
-        <AnnouncementBanner onOpenChange={setBannerOpen} />
-        <Header bannerOffset={bannerOpen} />
+        <Header />
         <main>
           <HeroSection />
           <AboutSection />
@@ -42,3 +37,4 @@ const Index = () => {
 };
 
 export default Index;
+
