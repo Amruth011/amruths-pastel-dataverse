@@ -120,15 +120,15 @@ const ContactSection = () => {
                   {loading ? 'Sending...' : submitted ? '✓ Message Sent!' : 'Send Message'}
                 </motion.button>
                 <a
-                  href="#"
+                  href="https://calendly.com/amruth-kumar-portfolio/new-meeting"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full mt-4 py-3 px-6 border-2 border-primary/50 rounded-lg text-primary/80 font-medium hover:border-primary hover:text-primary transition-all duration-200 flex items-center justify-center gap-2"
+                  className="w-full mt-8 py-3 px-6 border-2 border-primary/70 hover:bg-primary/10 rounded-lg text-primary font-medium hover:border-primary transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   <Calendar className="h-4 w-4" />
                   Schedule a 15-min Chat
                 </a>
-                <p className="text-xs text-primary/60 text-center mt-2">
+                <p className="text-sm text-muted-foreground text-center mt-2">
                   Pick a time that works for you →
                 </p>
               </form>
@@ -169,18 +169,13 @@ const ContactSection = () => {
           {/* Quote Card */}
           <SectionReveal delay={0.3}>
             <motion.div
-              className="mt-12 relative rounded-xl border border-[#e8c545]/30 bg-card/40 backdrop-blur-sm p-8 overflow-hidden"
-              whileHover={{ borderColor: 'rgba(232, 197, 69, 0.5)' }}
-              style={{ boxShadow: '0 0 25px rgba(232, 197, 69, 0.08)' }}
+              className="mt-12 border-l-4 border-primary/50 bg-card/30 p-6 rounded-r-lg"
+              whileHover={{ borderColor: 'hsl(46 78% 59% / 0.7)' }}
             >
-              <div className="absolute -top-2 -left-1 text-[#e8c545]/20 text-7xl font-serif leading-none select-none">"</div>
-                <div className="relative z-10 text-center">
-                <p className="italic text-foreground/90 text-base md:text-lg leading-relaxed mb-6">
-                  "The engineers who will matter in 2030 aren't just the ones who can build the fastest model — they're the ones who know when not to deploy it."
-                </p>
-                <p className="text-sm text-[#e8c545] font-medium tracking-wide">— Amruth Kumar M</p>
-              </div>
-              <div className="absolute -bottom-2 -right-1 text-[#e8c545]/20 text-7xl font-serif leading-none select-none rotate-180">"</div>
+              <p className="text-lg md:text-xl text-foreground/80 italic leading-relaxed font-light">
+                "The engineers who will matter in 2030 aren't just the ones who can build the fastest model — they're the ones who know when not to deploy it."
+              </p>
+              <p className="mt-4 text-sm text-primary/80 font-medium tracking-wide">— Amruth Kumar M</p>
             </motion.div>
           </SectionReveal>
         </div>
