@@ -5,6 +5,7 @@ import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import BlogSection from '@/components/BlogSection';
+import GitHubSection from '@/components/GitHubSection';
 import InternshipSection from '@/components/InternshipSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
