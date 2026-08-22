@@ -162,6 +162,40 @@ const ContactSection = () => {
                     <p className="text-xs text-muted-foreground">Bengaluru, India</p>
                   </div>
                 </div>
+
+                {/* Social presence */}
+                <div className="pt-2">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 mb-3">
+                    Follow the build
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {socials.map((s) =>
+                      s.href ? (
+                        <motion.a
+                          key={s.label}
+                          href={s.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ y: -2 }}
+                          aria-label={s.label}
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/60 bg-card/20 text-xs text-foreground/80 hover:text-primary hover:border-primary/40 transition-colors duration-300"
+                        >
+                          {s.icon}
+                          {s.label}
+                        </motion.a>
+                      ) : (
+                        <span
+                          key={s.label}
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-dashed border-border/50 bg-transparent text-xs text-muted-foreground/50 cursor-default"
+                        >
+                          {s.icon}
+                          {s.label}
+                          <span className="font-mono text-[9px] uppercase tracking-wider text-primary/40">soon</span>
+                        </span>
+                      )
+                    )}
+                  </div>
+                </div>
               </div>
             </SectionReveal>
           </div>
