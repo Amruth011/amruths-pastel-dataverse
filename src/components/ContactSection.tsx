@@ -51,6 +51,13 @@ const ContactSection = () => {
     { icon: <Phone className="h-5 w-5" />, label: 'Phone', href: 'tel:+919148159827', external: false },
   ];
 
+  const socials = [
+    { icon: <Github className="h-3.5 w-3.5" />, label: 'GitHub', href: 'https://github.com/Amruth011' },
+    { icon: <Linkedin className="h-3.5 w-3.5" />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/amruth-kumar-m' },
+    { icon: <Youtube className="h-3.5 w-3.5" />, label: 'YouTube', href: '' },
+    { icon: <Instagram className="h-3.5 w-3.5" />, label: 'Instagram', href: '' },
+  ];
+
   return (
     <section id="contact" className="py-24 relative">
       <div className="gradient-line" />
