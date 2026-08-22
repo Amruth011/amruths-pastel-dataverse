@@ -111,83 +111,74 @@ const GitHubSection = () => {
   const langColors = ['bg-blue-500', 'bg-orange-500', 'bg-emerald-500', 'bg-yellow-500', 'bg-muted-foreground/30'];
 
   const stats = [
-    { icon: <GitFork className="h-5 w-5" />, label: 'Repositories', value: repos !== null ? String(repos) : '—' },
-    { icon: <Star className="h-5 w-5" />, label: 'Stars Earned', value: stars !== null ? String(stars) : '—' },
-    {
-      icon: <Code className="h-5 w-5" />,
-      label: `Contributions ${year}`,
-      value: total !== null ? total.toLocaleString() : '—',
-    },
+    { icon: <GitFork className="h-3.5 w-3.5" />, label: 'Repos', value: repos !== null ? String(repos) : '—' },
+    { icon: <Star className="h-3.5 w-3.5" />, label: 'Stars', value: stars !== null ? String(stars) : '—' },
+    { icon: <Code className="h-3.5 w-3.5" />, label: `${year}`, value: total !== null ? total.toLocaleString() : '—' },
   ];
 
   return (
-    <section id="github" className="py-24 relative">
+    <section id="github" className="py-14 relative">
       <div className="gradient-line" />
-      <div className="container mx-auto px-4 pt-16">
+      <div className="container mx-auto px-4 pt-10">
         <div className="max-w-4xl mx-auto">
           <SectionReveal>
-            <p className="font-mono text-xs text-primary mb-4 tracking-widest uppercase">GitHub</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-16 tracking-tight text-heading">
+            <p className="font-mono text-xs text-primary mb-3 tracking-widest uppercase">GitHub</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold mb-8 tracking-tight text-heading">
               Open source & activity.
             </h2>
           </SectionReveal>
 
-          {/* Stats */}
           <SectionReveal delay={0.1}>
-            <div className="grid grid-cols-3 gap-3 md:gap-4 mb-10">
-              {stats.map((stat) => (
-                <motion.div
-                  key={stat.label}
-                  whileHover={{ y: -4, borderColor: 'hsl(46 78% 59% / 0.3)' }}
-                  transition={{ duration: 0.2 }}
-                  className="border border-border rounded-lg p-4 md:p-6 bg-card/20 text-center glow-card"
-                >
-                  <div className="flex items-center justify-center mb-3 text-primary/70">{stat.icon}</div>
-                  <div className="text-2xl md:text-3xl font-bold mb-1 tracking-tight">{stat.value}</div>
-                  <div className="text-[10px] md:text-xs text-muted-foreground font-mono uppercase tracking-wider">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </SectionReveal>
-
-          {/* Contribution Heatmap */}
-          <SectionReveal delay={0.2}>
-            <div className="border border-border rounded-lg p-4 md:p-6 bg-card/20 mb-4">
-              <div className="flex items-center gap-2 mb-5">
-                <Github className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground font-mono">
-                  {total !== null ? `${total.toLocaleString()} contributions in ${year}` : `Contribution activity ${year}`}
-                </span>
+            <div className="border border-border rounded-xl p-4 md:p-5 bg-card/20">
+              {/* Compact header with stats */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <Github className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground font-mono">
+                    {total !== null ? `${total.toLocaleString()} contributions in ${year}` : `Contribution activity ${year}`}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  {stats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border/50 bg-background/30 text-[11px] font-mono"
+                    >
+                      <span className="text-primary/70">{stat.icon}</span>
+                      <span className="text-foreground/80 font-semibold">{stat.value}</span>
+                      <span className="text-muted-foreground/70">{stat.label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
+              {/* Heatmap */}
               <div className="overflow-x-auto pb-2">
-                <div className="min-w-[700px]">
-                  <div className="relative h-4 mb-1">
+                <div className="min-w-[560px]">
+                  <div className="relative h-3 mb-1">
                     {monthLabels.map((m) => (
                       <span
                         key={`${m.label}-${m.index}`}
-                        className="absolute text-[10px] text-muted-foreground/70 font-mono"
-                        style={{ left: `${m.index * 14}px` }}
+                        className="absolute text-[9px] text-muted-foreground/70 font-mono"
+                        style={{ left: `${m.index * 11.5}px` }}
                       >
                         {m.label}
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-[3px]">
+                  <div className="flex gap-[2px]">
                     {loading && <div className="text-xs text-muted-foreground font-mono">Loading activity…</div>}
                     {weeks.map((week, weekIdx) => (
-                      <div key={weekIdx} className="flex flex-col gap-[3px]">
+                      <div key={weekIdx} className="flex flex-col gap-[2px]">
                         {week.map((day, dayIdx) => (
                           <motion.div
                             key={dayIdx}
                             initial={{ opacity: 0, scale: 0 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ delay: weekIdx * 0.004, duration: 0.2 }}
+                            transition={{ delay: weekIdx * 0.003, duration: 0.2 }}
                             title={day ? `${day.count} contributions on ${day.date}` : undefined}
-                            className={`w-[11px] h-[11px] rounded-[2px] ${
+                            className={`w-[9px] h-[9px] rounded-[2px] ${
                               day ? getColor(day.level) : 'bg-transparent'
                             } transition-colors duration-200 hover:ring-1 hover:ring-primary/40`}
                           />
@@ -198,51 +189,34 @@ const GitHubSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 mt-4 justify-end">
-                <span className="text-[10px] text-muted-foreground/60 font-mono">Less</span>
-                {[0, 1, 2, 3, 4].map((level) => (
-                  <div key={level} className={`w-[11px] h-[11px] rounded-[2px] ${getColor(level)}`} />
-                ))}
-                <span className="text-[10px] text-muted-foreground/60 font-mono">More</span>
+              {/* Legend + languages */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4 pt-3 border-t border-border/40">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[9px] text-muted-foreground/60 font-mono">Less</span>
+                  {[0, 1, 2, 3, 4].map((level) => (
+                    <div key={level} className={`w-[9px] h-[9px] rounded-[2px] ${getColor(level)}`} />
+                  ))}
+                  <span className="text-[9px] text-muted-foreground/60 font-mono">More</span>
+                </div>
+
+                {languages.length > 0 && (
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+                    {languages.map((lang, i) => (
+                      <div key={lang.name} className="flex items-center gap-1.5">
+                        <div className={`w-2 h-2 rounded-full ${langColors[i]}`} />
+                        <span className="text-[11px] text-muted-foreground">
+                          {lang.name} <span className="font-mono text-foreground/60">{lang.percentage}%</span>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </SectionReveal>
 
-          {/* Top Languages */}
-          {languages.length > 0 && (
-            <SectionReveal delay={0.3}>
-              <div className="border border-border rounded-lg p-4 md:p-6 bg-card/20">
-                <p className="text-sm text-muted-foreground mb-4 font-mono">Top Languages</p>
-
-                <div className="flex rounded-full overflow-hidden h-2.5 mb-4 bg-card">
-                  {languages.map((lang, i) => (
-                    <motion.div
-                      key={lang.name}
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${lang.percentage}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, ease: 'easeOut' }}
-                      className={langColors[i]}
-                    />
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-x-5 gap-y-2">
-                  {languages.map((lang, i) => (
-                    <div key={lang.name} className="flex items-center gap-2">
-                      <div className={`w-2.5 h-2.5 rounded-full ${langColors[i]}`} />
-                      <span className="text-xs text-muted-foreground">
-                        {lang.name} <span className="font-mono text-foreground/60">{lang.percentage}%</span>
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </SectionReveal>
-          )}
-
-          <SectionReveal delay={0.4}>
-            <div className="mt-10 text-center">
+          <SectionReveal delay={0.2}>
+            <div className="mt-6 text-center">
               <a
                 href={`https://github.com/${USERNAME}`}
                 target="_blank"
