@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, MapPin, ArrowUpRight, Send, User, MessageSquare, Phone, Calendar, Youtube, Instagram } from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, ArrowUpRight, Send, User, MessageSquare, Phone, Calendar } from 'lucide-react';
 import SectionReveal from './SectionReveal';
 
 const WEB3FORMS_ACCESS_KEY = 'fbd98e34-18ef-4409-bef1-a88c05b827af';
@@ -51,12 +51,6 @@ const ContactSection = () => {
     { icon: <Phone className="h-5 w-5" />, label: 'Phone', href: 'tel:+919148159827', external: false },
   ];
 
-  const socials = [
-    { icon: <Github className="h-3.5 w-3.5" />, label: 'GitHub', href: 'https://github.com/Amruth011' },
-    { icon: <Linkedin className="h-3.5 w-3.5" />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/amruth-kumar-m' },
-    { icon: <Youtube className="h-3.5 w-3.5" />, label: 'YouTube', href: '' },
-    { icon: <Instagram className="h-3.5 w-3.5" />, label: 'Instagram', href: '' },
-  ];
 
   return (
     <section id="contact" className="py-24 relative">
@@ -170,39 +164,6 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                {/* Social presence */}
-                <div className="pt-2">
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 mb-3">
-                    Follow the build
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {socials.map((s) =>
-                      s.href ? (
-                        <motion.a
-                          key={s.label}
-                          href={s.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ y: -2 }}
-                          aria-label={s.label}
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/60 bg-card/20 text-xs text-foreground/80 hover:text-primary hover:border-primary/40 transition-colors duration-300"
-                        >
-                          {s.icon}
-                          {s.label}
-                        </motion.a>
-                      ) : (
-                        <span
-                          key={s.label}
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-dashed border-border/50 bg-transparent text-xs text-muted-foreground/50 cursor-default"
-                        >
-                          {s.icon}
-                          {s.label}
-                          <span className="font-mono text-[9px] uppercase tracking-wider text-primary/40">soon</span>
-                        </span>
-                      )
-                    )}
-                  </div>
-                </div>
               </div>
             </SectionReveal>
           </div>
