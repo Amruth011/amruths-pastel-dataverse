@@ -51,6 +51,7 @@ const ContactSection = () => {
     { icon: <Phone className="h-5 w-5" />, label: 'Phone', href: 'tel:+919148159827', external: false },
   ];
 
+
   return (
     <section id="contact" className="py-24 relative">
       <div className="gradient-line" />
@@ -162,6 +163,7 @@ const ContactSection = () => {
                     <p className="text-xs text-muted-foreground">Bengaluru, India</p>
                   </div>
                 </div>
+
               </div>
             </SectionReveal>
           </div>
