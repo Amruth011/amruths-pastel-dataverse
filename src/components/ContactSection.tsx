@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, MapPin, ArrowUpRight, Send, User, MessageSquare, Phone, Calendar } from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, ArrowUpRight, Send, User, MessageSquare, Phone, Calendar, Youtube, Instagram } from 'lucide-react';
 import SectionReveal from './SectionReveal';
 
 const WEB3FORMS_ACCESS_KEY = 'fbd98e34-18ef-4409-bef1-a88c05b827af';
