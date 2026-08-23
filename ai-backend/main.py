@@ -37,7 +37,7 @@ def chat(request: ChatRequest):
     try:
         system_prompt = SYSTEM_PROMPT_PATH.read_text(encoding="utf-8")
         completion = client.chat.completions.create(
-            model="llama3-70b-8192",
+            model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": request.message},
