@@ -161,7 +161,7 @@ const ChatWidget = () => {
             </div>
 
             {/* Quick replies */}
-            {messages.length < 3 && !isLoading && (
+            {messages.length < 6 && !isLoading && (
               <div className="px-4 pb-2 flex flex-wrap gap-2">
                 {QUICK_REPLIES.map((reply) => (
                   <button
