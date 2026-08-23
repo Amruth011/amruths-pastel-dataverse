@@ -20,6 +20,8 @@ const QUICK_REPLIES = [
   'Tell me about your RAG project',
   'What skills do you have?',
   'Are you open to work?',
+  'What is your experience?',
+  'How can I contact you?',
 ];
 
 const getAIResponse = (input: string): string => {
