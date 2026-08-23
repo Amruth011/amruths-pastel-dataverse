@@ -1,163 +1,221 @@
-import { useState } from 'react';
-import { Send, MessageCircle, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MessageSquare, X, Send, Sparkle } from 'lucide-react';
 
 interface Message {
-  role: 'user' | 'assistant';
-  content: string;
+  id: string;
+  role: 'user' | 'ai';
+  text: string;
 }
 
-export default function ChatWidget() {
+const INITIAL_MESSAGES: Message[] = [
+  {
+    id: 'intro',
+    role: 'ai',
+    text: "Hi! I'm Amruth's AI Agent. Ask me about his projects, skills, or availability for AI / Data Science roles.",
+  },
+];
+
+const QUICK_REPLIES = [
+  'Tell me about your RAG project',
+  'What skills do you have?',
+  'Are you open to work?',
+  'What is your experience?',
+  'How can I contact you?',
+];
+
+const getAIResponse = (input: string): string => {
+  const lower = input.toLowerCase();
+
+  if (lower.includes('rag') || lower.includes('kannada') || lower.includes('project')) {
+    return "Amruth's Kannada RAG Agent uses a hybrid retriever (BM25 + vector) with a 95% answer-relevance RAGAS score and a custom sentence-piece tokenizer. It is built with LangChain, FAISS, and FastAPI.";
+  }
+
+  if (lower.includes('skill') || lower.includes('tech') || lower.includes('stack')) {
+    return "Amruth works with Python, PyTorch, LangChain, LLMs, GenAI, MLOps, FastAPI, vector databases, Docker, and AWS/GCP for AI engineering.";
+  }
+
+  if (lower.includes('open') || lower.includes('work') || lower.includes('hire') || lower.includes('job') || lower.includes('available')) {
+    return "Yes — Amruth is currently open to full-time AI Engineer, ML Engineer, and GenAI / Data Science roles. He is based in Bangalore and open to remote or relocation.";
+  }
+
+  if (lower.includes('experience') || lower.includes('intern')) {
+    return "Amruth completed a Data Science internship and has built production-grade RAG pipelines, ML models, and deployed AI services.";
+  }
+
+  if (lower.includes('contact') || lower.includes('email') || lower.includes('linkedin') || lower.includes('schedule') || lower.includes('call')) {
+    return "You can reach Amruth at amruth.kumar.portfolio@gmail.com, schedule a 15-min chat via Calendly, or connect on LinkedIn — all links are in the Contact section.";
+  }
+
+  if (lower.includes('blog') || lower.includes('article')) {
+    return "Amruth writes about AI on Dev.to. His latest post is 'Kannada Hybrid RAG: Building a Low-Resource Multilingual Agent' — check the Blog section.";
+  }
+
+  return "Thanks for reaching out! I'm a lightweight portfolio agent. For a detailed answer, use the Contact section to message Amruth directly.";
+};
+
+const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: "Hi! I'm Amruth's AI Agent. Ask me about his projects, skills, or availability for AI / Data Science roles."
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages, isLoading]);
 
-    // Add user message
-    const userMessage: Message = { role: 'user', content: input };
-    setMessages((prev) => [...prev, userMessage]);
+  useEffect(() => {
+    if (isOpen) inputRef.current?.focus();
+  }, [isOpen, isLoading]);
+
+  const handleSend = (text: string = input) => {
+    if (!text.trim() || isLoading) return;
+
+    const userMsg: Message = { id: Date.now().toString(), role: 'user', text: text.trim() };
+    setMessages((prev) => [...prev, userMsg]);
     setInput('');
     setIsLoading(true);
 
-    try {
-      // Call your backend API
-      const response = await fetch('http://localhost:8000/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: input }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Backend API failed');
-      }
-
-      const data = await response.json();
-
-      // Add AI response
-      const aiMessage: Message = { role: 'assistant', content: data.response };
-      setMessages((prev) => [...prev, aiMessage]);
-    } catch (error) {
-      console.error('Chat error:', error);
-      // Show error message
-      const errorMessage: Message = {
-        role: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.',
-      };
-      setMessages((prev) => [...prev, errorMessage]);
-    } finally {
+    setTimeout(() => {
+      const aiText = getAIResponse(userMsg.text);
+      setMessages((prev) => [
+        ...prev,
+        { id: (Date.now() + 1).toString(), role: 'ai', text: aiText },
+      ]);
       setIsLoading(false);
-    }
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
+    }, 800);
   };
 
   return (
-    <>
-      {/* Floating Chat Button */}
-      {!isOpen && (
-        <Button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg bg-yellow-500 hover:bg-yellow-600 animate-pulse"
-          size="icon"
-        >
-          <MessageCircle className="h-6 w-6" />
-        </Button>
-      )}
-
-      {/* Chat Window */}
-      {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[500px] bg-slate-900 border border-slate-700 rounded-lg shadow-2xl flex flex-col">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-slate-700 bg-slate-800 rounded-t-lg">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <h3 className="font-semibold text-white">Amruth's AI Agent</h3>
-            </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(false)}
-              className="h-8 w-8 p-0 hover:bg-slate-700"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-
-          {/* Messages Area */}
-          <ScrollArea className="flex-1 p-4">
-            <div className="space-y-4">
-              {messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={`flex ${
-                    message.role === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
-                >
-                  <div
-                    className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                      message.role === 'user'
-                        ? 'bg-yellow-500 text-slate-900'
-                        : 'bg-slate-800 text-slate-100'
-                    }`}
-                  >
-                    <p className="text-sm">{message.content}</p>
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 16, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.97 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+            className="mb-4 h-[520px] w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] sm:w-96 sm:max-w-sm rounded-2xl border border-border/40 bg-card/95 backdrop-blur-xl shadow-2xl shadow-black/60 overflow-hidden flex flex-col glow-gold"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-border/40 bg-white/[0.02] px-4 py-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/25">
+                  <Sparkle className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold tracking-tight text-heading">Amruth's AI Agent</h3>
+                  <div className="flex items-center gap-1.5">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+                    </span>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Online</p>
                   </div>
                 </div>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="rounded-md p-1.5 text-muted-foreground hover:bg-white/[0.05] hover:text-primary transition-colors"
+                aria-label="Close chat"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Messages */}
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
+              {messages.map((msg) => (
+                <motion.div
+                  key={msg.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[82%] px-4 py-2.5 text-sm leading-relaxed ${
+                      msg.role === 'user'
+                        ? 'rounded-2xl rounded-br-sm bg-primary text-primary-foreground font-medium'
+                        : 'rounded-2xl rounded-bl-sm bg-white/[0.04] text-foreground/90 border border-border/40'
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
+                </motion.div>
               ))}
+
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-slate-800 rounded-lg px-4 py-2">
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" />
-                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:0.1s]" />
-                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]" />
-                    </div>
+                  <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm bg-white/[0.04] border border-border/40 px-4 py-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce [animation-delay:-0.3s]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce [animation-delay:-0.15s]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce" />
                   </div>
                 </div>
               )}
             </div>
-          </ScrollArea>
 
-          {/* Input Area */}
-          <div className="p-4 border-t border-slate-700 bg-slate-800 rounded-b-lg">
-            <div className="flex gap-2">
-              <Input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Ask about Amruth..."
-                disabled={isLoading}
-                className="flex-1 bg-slate-900 border-slate-700 text-white placeholder:text-slate-500"
-              />
-              <Button
-                onClick={handleSend}
-                disabled={isLoading || !input.trim()}
-                className="bg-yellow-500 hover:bg-yellow-600 disabled:opacity-50"
-                size="icon"
-              >
-                <Send className="h-4 w-4" />
-              </Button>
+            {/* Quick replies */}
+            {messages.length < 6 && !isLoading && (
+              <div className="px-4 pb-2 flex flex-wrap gap-2">
+                {QUICK_REPLIES.map((reply) => (
+                  <button
+                    key={reply}
+                    onClick={() => handleSend(reply)}
+                    className="font-mono text-[11px] rounded-full border border-primary/20 bg-primary/[0.04] px-3 py-1.5 text-primary/80 hover:border-primary/50 hover:text-primary hover:bg-primary/[0.08] transition-colors"
+                  >
+                    {reply}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Input */}
+            <div className="border-t border-border/40 p-3">
+              <div className="flex items-center gap-2 rounded-xl bg-white/[0.03] border border-border/40 px-3 py-2 focus-within:border-primary/40 transition-colors">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
+                  placeholder="Ask about Amruth..."
+                  className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+                />
+                <button
+                  onClick={() => handleSend()}
+                  disabled={!input.trim() || isLoading}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  aria-label="Send message"
+                >
+                  <Send className="h-4 w-4" />
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
-    </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Toggle button */}
+      <motion.button
+        onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary backdrop-blur-xl glow-gold hover:bg-primary/20 transition-colors"
+        aria-label={isOpen ? 'Close chat' : 'Open chat'}
+      >
+        {isOpen ? <X className="h-5 w-5" /> : <MessageSquare className="h-5 w-5" />}
+        {!isOpen && (
+          <span className="pointer-events-none absolute inset-0 rounded-full border border-primary/40 animate-ping opacity-40" />
+        )}
+      </motion.button>
+    </div>
   );
-}
+};
+
+export default ChatWidget;
