@@ -12,7 +12,7 @@ const INITIAL_MESSAGES: Message[] = [
   {
     id: 'intro',
     role: 'ai',
-    text: "Hi! I'm Amruth's AI Agent. Ask me about his projects, skills, or availability for AI / Data Science roles.",
+    text: "Hi! I'm Amruth's AI Agent. Ask me about his projects, skills, education, or availability for AI / Data Science roles.",
   },
 ];
 
@@ -23,36 +23,6 @@ const QUICK_REPLIES = [
   'What is your experience?',
   'How can I contact you?',
 ];
-
-const getAIResponse = (input: string): string => {
-  const lower = input.toLowerCase();
-
-  if (lower.includes('rag') || lower.includes('kannada') || lower.includes('project')) {
-    return "Amruth's Kannada RAG Agent uses a hybrid retriever (BM25 + vector) with a 95% answer-relevance RAGAS score and a custom sentence-piece tokenizer. It is built with LangChain, FAISS, and FastAPI.";
-  }
-
-  if (lower.includes('skill') || lower.includes('tech') || lower.includes('stack')) {
-    return "Amruth works with Python, PyTorch, LangChain, LLMs, GenAI, MLOps, FastAPI, vector databases, Docker, and AWS/GCP for AI engineering.";
-  }
-
-  if (lower.includes('open') || lower.includes('work') || lower.includes('hire') || lower.includes('job') || lower.includes('available')) {
-    return "Yes — Amruth is currently open to full-time AI Engineer, ML Engineer, and GenAI / Data Science roles. He is based in Bangalore and open to remote or relocation.";
-  }
-
-  if (lower.includes('experience') || lower.includes('intern')) {
-    return "Amruth completed a Data Science internship and has built production-grade RAG pipelines, ML models, and deployed AI services.";
-  }
-
-  if (lower.includes('contact') || lower.includes('email') || lower.includes('linkedin') || lower.includes('schedule') || lower.includes('call')) {
-    return "You can reach Amruth at amruth.kumar.portfolio@gmail.com, schedule a 15-min chat via Calendly, or connect on LinkedIn — all links are in the Contact section.";
-  }
-
-  if (lower.includes('blog') || lower.includes('article')) {
-    return "Amruth writes about AI on Dev.to. His latest post is 'Kannada Hybrid RAG: Building a Low-Resource Multilingual Agent' — check the Blog section.";
-  }
-
-  return "Thanks for reaching out! I'm a lightweight portfolio agent. For a detailed answer, use the Contact section to message Amruth directly.";
-};
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,7 +42,8 @@ const ChatWidget = () => {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen, isLoading]);
 
-  const handleSend = (text: string = input) => {
+  // REAL API CALL TO YOUR BACKEND
+  const handleSend = async (text: string = input) => {
     if (!text.trim() || isLoading) return;
 
     const userMsg: Message = { id: Date.now().toString(), role: 'user', text: text.trim() };
@@ -80,14 +51,37 @@ const ChatWidget = () => {
     setInput('');
     setIsLoading(true);
 
-    setTimeout(() => {
-      const aiText = getAIResponse(userMsg.text);
+    try {
+      // Call your local FastAPI backend
+      const response = await fetch('http://localhost:8000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: text.trim() }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Backend API failed');
+      }
+
+      const data = await response.json();
+      
+      // Add the real AI response
       setMessages((prev) => [
         ...prev,
-        { id: (Date.now() + 1).toString(), role: 'ai', text: aiText },
+        { id: (Date.now() + 1).toString(), role: 'ai', text: data.response },
       ]);
+      
+    } catch (error) {
+      console.error('Chat error:', error);
+      setMessages((prev) => [
+        ...prev,
+        { id: (Date.now() + 1).toString(), role: 'ai', text: "Sorry, I'm having trouble connecting to the server right now. Please try again." },
+      ]);
+    } finally {
       setIsLoading(false);
-    }, 800);
+    }
   };
 
   return (
