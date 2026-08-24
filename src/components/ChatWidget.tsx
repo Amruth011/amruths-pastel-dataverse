@@ -12,13 +12,13 @@ const INITIAL_MESSAGES: Message[] = [
   {
     id: 'intro',
     role: 'ai',
-    text: "Hi! I'm Amruth's AI Agent. Ask me about his projects, skills, education, or availability for AI / Data Science roles.",
+    text: "Hi! I'm Amruth's AI Agent. Ask me about his projects, skills, background, or availability for AI / Data Science roles.",
   },
 ];
 
 const QUICK_REPLIES = [
   'Tell me about your RAG project',
-  'What skills do you have?',
+  'What is your native place?',
   'Are you open to work?',
   'What is your experience?',
   'How can I contact you?',
@@ -42,7 +42,6 @@ const ChatWidget = () => {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen, isLoading]);
 
-  // REAL API CALL TO YOUR BACKEND
   const handleSend = async (text: string = input) => {
     if (!text.trim() || isLoading) return;
 
@@ -52,33 +51,20 @@ const ChatWidget = () => {
     setIsLoading(true);
 
     try {
-      // Call your local FastAPI backend
-      const response = await fetch('http://localhost:8000/api/chat', {
+      const response = await fetch('https://amruth-backend.onrender.com/api/chat', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text.trim() }),
       });
 
-      if (!response.ok) {
-        throw new Error('Backend API failed');
-      }
+      if (!response.ok) throw new Error('Backend API failed');
 
       const data = await response.json();
-      
-      // Add the real AI response
-      setMessages((prev) => [
-        ...prev,
-        { id: (Date.now() + 1).toString(), role: 'ai', text: data.response },
-      ]);
+      setMessages((prev) => [...prev, { id: (Date.now() + 1).toString(), role: 'ai', text: data.response }]);
       
     } catch (error) {
       console.error('Chat error:', error);
-      setMessages((prev) => [
-        ...prev,
-        { id: (Date.now() + 1).toString(), role: 'ai', text: "Sorry, I'm having trouble connecting to the server right now. Please try again." },
-      ]);
+      setMessages((prev) => [...prev, { id: (Date.now() + 1).toString(), role: 'ai', text: "Sorry, I'm having trouble connecting to the server right now. Please try again." }]);
     } finally {
       setIsLoading(false);
     }
@@ -95,7 +81,6 @@ const ChatWidget = () => {
             transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
             className="mb-4 h-[520px] w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] sm:w-96 sm:max-w-sm rounded-2xl border border-border/40 bg-card/95 backdrop-blur-xl shadow-2xl shadow-black/60 overflow-hidden flex flex-col glow-gold"
           >
-            {/* Header */}
             <div className="flex items-center justify-between border-b border-border/40 bg-white/[0.02] px-4 py-3">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/25">
@@ -112,37 +97,19 @@ const ChatWidget = () => {
                   </div>
                 </div>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="rounded-md p-1.5 text-muted-foreground hover:bg-white/[0.05] hover:text-primary transition-colors"
-                aria-label="Close chat"
-              >
+              <button onClick={() => setIsOpen(false)} className="rounded-md p-1.5 text-muted-foreground hover:bg-white/[0.05] hover:text-primary transition-colors" aria-label="Close chat">
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            {/* Messages */}
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
               {messages.map((msg) => (
-                <motion.div
-                  key={msg.id}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-[82%] px-4 py-2.5 text-sm leading-relaxed ${
-                      msg.role === 'user'
-                        ? 'rounded-2xl rounded-br-sm bg-primary text-primary-foreground font-medium'
-                        : 'rounded-2xl rounded-bl-sm bg-white/[0.04] text-foreground/90 border border-border/40'
-                    }`}
-                  >
+                <motion.div key={msg.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[82%] px-4 py-2.5 text-sm leading-relaxed ${msg.role === 'user' ? 'rounded-2xl rounded-br-sm bg-primary text-primary-foreground font-medium' : 'rounded-2xl rounded-bl-sm bg-white/[0.04] text-foreground/90 border border-border/40'}`}>
                     {msg.text}
                   </div>
                 </motion.div>
               ))}
-
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm bg-white/[0.04] border border-border/40 px-4 py-3">
@@ -154,39 +121,20 @@ const ChatWidget = () => {
               )}
             </div>
 
-            {/* Quick replies */}
             {messages.length < 6 && !isLoading && (
               <div className="px-4 pb-2 flex flex-wrap gap-2">
                 {QUICK_REPLIES.map((reply) => (
-                  <button
-                    key={reply}
-                    onClick={() => handleSend(reply)}
-                    className="font-mono text-[11px] rounded-full border border-primary/20 bg-primary/[0.04] px-3 py-1.5 text-primary/80 hover:border-primary/50 hover:text-primary hover:bg-primary/[0.08] transition-colors"
-                  >
+                  <button key={reply} onClick={() => handleSend(reply)} className="font-mono text-[11px] rounded-full border border-primary/20 bg-primary/[0.04] px-3 py-1.5 text-primary/80 hover:border-primary/50 hover:text-primary hover:bg-primary/[0.08] transition-colors">
                     {reply}
                   </button>
                 ))}
               </div>
             )}
 
-            {/* Input */}
             <div className="border-t border-border/40 p-3">
               <div className="flex items-center gap-2 rounded-xl bg-white/[0.03] border border-border/40 px-3 py-2 focus-within:border-primary/40 transition-colors">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
-                  placeholder="Ask about Amruth..."
-                  className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-                />
-                <button
-                  onClick={() => handleSend()}
-                  disabled={!input.trim() || isLoading}
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                  aria-label="Send message"
-                >
+                <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()} placeholder="Ask about Amruth..." className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none" />
+                <button onClick={() => handleSend()} disabled={!input.trim() || isLoading} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 disabled:opacity-40 disabled:cursor-not-allowed transition-colors" aria-label="Send message">
                   <Send className="h-4 w-4" />
                 </button>
               </div>
@@ -195,18 +143,9 @@ const ChatWidget = () => {
         )}
       </AnimatePresence>
 
-      {/* Toggle button */}
-      <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary backdrop-blur-xl glow-gold hover:bg-primary/20 transition-colors"
-        aria-label={isOpen ? 'Close chat' : 'Open chat'}
-      >
+      <motion.button onClick={() => setIsOpen(!isOpen)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group relative flex h-14 w-14 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary backdrop-blur-xl glow-gold hover:bg-primary/20 transition-colors" aria-label={isOpen ? 'Close chat' : 'Open chat'}>
         {isOpen ? <X className="h-5 w-5" /> : <MessageSquare className="h-5 w-5" />}
-        {!isOpen && (
-          <span className="pointer-events-none absolute inset-0 rounded-full border border-primary/40 animate-ping opacity-40" />
-        )}
+        {!isOpen && <span className="pointer-events-none absolute inset-0 rounded-full border border-primary/40 animate-ping opacity-40" />}
       </motion.button>
     </div>
   );
