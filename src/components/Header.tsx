@@ -54,7 +54,7 @@ const Header = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16">
           <button onClick={() => scrollToSection('home')} className="font-mono text-sm font-bold tracking-tight text-primary hover:opacity-80 transition-all duration-300 hover:tracking-wider">
-            amruthportfolio.me
+            amruthportfolio
           </button>
 
           <nav className="hidden md:flex items-center gap-1">
