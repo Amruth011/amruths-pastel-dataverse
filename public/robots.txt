@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://amruthportfolio.me/sitemap.xml
+Sitemap: https://amruthportfolio.lovable.app/sitemap.xml
