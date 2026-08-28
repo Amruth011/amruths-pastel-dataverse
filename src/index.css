@@ -47,6 +47,14 @@
     background: hsl(46 78% 59% / 0.3);
     color: white;
   }
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
 }
 
 @layer components {
