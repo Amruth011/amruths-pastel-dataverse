@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Sparkle } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { trackEvent } from '@/lib/analytics';
 
 interface Message {
   id: string;
