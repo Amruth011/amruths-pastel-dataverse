@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, ChevronDown, ChevronUp, TrendingUp, Database, Cpu, BarChart3, Layers, Zap } from 'lucide-react';
 import SectionReveal from './SectionReveal';
+import { trackEvent } from '@/lib/analytics';
 
 interface Project {
   title: string;
@@ -219,9 +220,11 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent('project_github_click', { project: project.title })}
+                aria-label={`View ${project.title} source code on GitHub (opens in a new tab)`}
                 className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-mono border border-border/50 rounded-lg bg-background/30 text-foreground/80 hover:border-primary/40 hover:text-primary hover:bg-primary/5 hover:shadow-[0_0_20px_hsl(46_78%_59%/0.1)] transition-all duration-300"
               >
-                <Github className="h-4 w-4" />
+                <Github className="h-4 w-4" aria-hidden="true" />
                 View on GitHub
               </a>
               {project.demoUrl && (
@@ -229,9 +232,11 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent('project_demo_click', { project: project.title })}
+                  aria-label={`Open the live demo of ${project.title} (opens in a new tab)`}
                   className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-mono bg-primary text-primary-foreground rounded-lg hover:shadow-[0_0_25px_hsl(46_78%_59%/0.3)] transition-all duration-300"
                 >
-                  <ExternalLink className="h-4 w-4" />
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
                   Live Demo
                 </a>
               )}
@@ -271,9 +276,11 @@ const ProjectsSection = () => {
                 href="https://github.com/amruth011?tab=repositories"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent('all_repos_click')}
+                aria-label="View all repositories on GitHub (opens in a new tab)"
                 className="inline-flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors duration-300 font-mono group px-6 py-3 border border-border/40 rounded-lg hover:border-primary/30 hover:bg-primary/5"
               >
-                <Github className="h-4 w-4" />
+                <Github className="h-4 w-4" aria-hidden="true" />
                 View all repositories
                 <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
               </a>
