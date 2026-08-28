@@ -16,6 +16,7 @@ const ContactSection = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    trackEvent('contact_form_submit');
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
