@@ -156,7 +156,7 @@ const ChatWidget = () => {
 
             <div className="border-t border-border/40 p-3">
               <div className="flex items-center gap-2 rounded-xl bg-white/[0.03] border border-border/40 px-3 py-2 focus-within:border-primary/40 transition-colors">
-                <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()} placeholder="Ask about Amruth..." className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none" />
+                <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()} placeholder="Ask about Amruth..." aria-label="Ask the AI assistant about Amruth" className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none" />
                 <button onClick={() => handleSend()} disabled={!input.trim() || isLoading} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 disabled:opacity-40 disabled:cursor-not-allowed transition-colors" aria-label="Send message">
                   <Send className="h-4 w-4" />
                 </button>
@@ -167,13 +167,17 @@ const ChatWidget = () => {
       </AnimatePresence>
 
       <motion.button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          trackEvent(isOpen ? 'chat_close' : 'chat_open');
+          setIsOpen(!isOpen);
+        }}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
         className="group relative flex h-14 items-center gap-2.5 rounded-full border border-primary/40 bg-card/95 px-5 text-primary shadow-2xl shadow-black/60 backdrop-blur-xl glow-gold hover:bg-primary/10 transition-colors"
         aria-label={isOpen ? 'Close chat' : 'Open chat with AI Agent'}
+        aria-expanded={isOpen}
       >
-        {isOpen ? <X className="h-5 w-5" /> : <MessageSquare className="h-5 w-5" />}
+        {isOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <MessageSquare className="h-5 w-5" aria-hidden="true" />}
         <span className="hidden sm:inline text-sm font-medium tracking-tight">{isOpen ? 'Close' : 'Chat with AI'}</span>
         {!isOpen && (
           <>

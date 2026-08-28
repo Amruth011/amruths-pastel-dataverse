@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import { Github, ArrowDown, Send } from 'lucide-react';
 import ParticleField from './ParticleField';
+import { trackEvent } from '@/lib/analytics';
 
 const HeroSection = () => {
   const scrollToSection = (id: string) => {
+    trackEvent('cta_click', { target: id, location: 'hero' });
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -84,9 +86,11 @@ const HeroSection = () => {
             href="https://github.com/Amruth011"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('cta_click', { target: 'github_profile', location: 'hero' })}
+            aria-label="Open Amruth's GitHub profile (opens in a new tab)"
             className="px-6 py-3 border border-primary/40 bg-primary/5 backdrop-blur-sm text-primary font-medium rounded-lg hover:bg-primary/10 hover:border-primary/60 transition-all duration-300 text-sm inline-flex items-center gap-2"
           >
-            <Github className="h-4 w-4" />
+            <Github className="h-4 w-4" aria-hidden="true" />
             GitHub Profile
           </a>
           <button
