@@ -21,8 +21,14 @@ const Index = () => {
         transition={{ duration: 0.5 }}
         className="min-h-screen bg-background"
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md focus:border focus:border-primary/50 focus:bg-card focus:px-4 focus:py-2 focus:text-sm focus:text-primary"
+        >
+          Skip to main content
+        </a>
         <Header />
-        <main>
+        <main id="main-content" tabIndex={-1}>
           <HeroSection />
           <AboutSection />
           <SkillsSection />

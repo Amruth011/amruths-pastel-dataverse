@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,6 +28,7 @@ const Header = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
+    trackEvent('nav_click', { target: id });
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setIsMenuOpen(false);
   };
@@ -53,16 +55,17 @@ const Header = () => {
 
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16">
-          <button onClick={() => scrollToSection('home')} className="font-mono text-sm font-bold tracking-tight text-primary hover:opacity-80 transition-all duration-300 hover:tracking-wider">
+          <button onClick={() => scrollToSection('home')} aria-label="Back to top of amruthportfolio" className="font-mono text-sm font-bold tracking-tight text-primary hover:opacity-80 transition-all duration-300 hover:tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md">
             amruthportfolio
           </button>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative text-sm px-3 py-1.5 rounded-md transition-all duration-300 ${
+                aria-current={activeSection === item.id ? 'true' : undefined}
+                className={`relative text-sm px-3 py-1.5 rounded-md transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                   activeSection === item.id
                     ? 'text-primary'
                     : 'text-muted-foreground hover:text-foreground'
@@ -82,24 +85,25 @@ const Header = () => {
 
           <div className="hidden md:flex items-center gap-1">
             {[
-              { href: 'https://github.com/Amruth011', icon: <Github className="h-4 w-4" />, label: 'GitHub' },
-              { href: 'https://www.linkedin.com/in/amruth-kumar-m', icon: <Linkedin className="h-4 w-4" />, label: 'LinkedIn' },
-              { href: 'mailto:amruth.kumar.portfolio@gmail.com', icon: <Mail className="h-4 w-4" />, label: 'Email' },
+              { href: 'https://github.com/Amruth011', icon: <Github className="h-4 w-4" aria-hidden="true" />, label: 'GitHub' },
+              { href: 'https://www.linkedin.com/in/amruth-kumar-m', icon: <Linkedin className="h-4 w-4" aria-hidden="true" />, label: 'LinkedIn' },
+              { href: 'mailto:amruth.kumar.portfolio@gmail.com', icon: <Mail className="h-4 w-4" aria-hidden="true" />, label: 'Email' },
             ].map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target={link.href.startsWith('mailto') ? undefined : '_blank'}
                 rel="noopener noreferrer"
-                aria-label={link.label}
-                className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-md hover:bg-accent"
+                aria-label={link.href.startsWith('mailto') ? 'Email Amruth' : `${link.label} profile (opens in a new tab)`}
+                onClick={() => trackEvent('social_click', { network: link.label, location: 'header' })}
+                className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-md hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 {link.icon}
               </a>
             ))}
           </div>
 
-          <button className="md:hidden text-muted-foreground p-2" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+          <button className="md:hidden text-muted-foreground p-2 min-h-11 min-w-11 inline-flex items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} aria-expanded={isMenuOpen}>
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
