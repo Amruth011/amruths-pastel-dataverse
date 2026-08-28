@@ -162,15 +162,17 @@ const ContactSection = () => {
                     href={link.href}
                     target={link.external ? '_blank' : undefined}
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent('contact_link_click', { channel: link.label })}
+                    aria-label={link.external ? `${link.label} (opens in a new tab)` : link.label}
                     whileHover={{ x: 4, borderColor: 'hsl(46 78% 59% / 0.3)' }}
-                    className="flex items-center gap-4 px-5 py-4 border border-border/60 rounded-lg bg-card/20 hover:bg-card/40 transition-all duration-300 group"
+                    className="flex items-center gap-4 px-5 py-4 border border-border/60 rounded-lg bg-card/20 hover:bg-card/40 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
-                    <span className="text-primary/50 group-hover:text-primary transition-colors">{link.icon}</span>
+                    <span className="text-primary/70 group-hover:text-primary transition-colors" aria-hidden="true">{link.icon}</span>
                     <div className="flex-1">
                       <p className="text-sm font-medium">{link.label}</p>
                       <p className="text-xs text-muted-foreground truncate">{link.href.replace('mailto:', '').replace('https://', '').replace('tel:', '').replace('+91', '+91 ')}</p>
                     </div>
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground/0 group-hover:text-muted-foreground transition-all duration-300" />
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground/0 group-hover:text-muted-foreground transition-all duration-300" aria-hidden="true" />
                   </motion.a>
                 ))}
 
