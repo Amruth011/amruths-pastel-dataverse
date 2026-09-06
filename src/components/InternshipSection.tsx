@@ -5,6 +5,21 @@ import SectionReveal from './SectionReveal';
 const InternshipSection = () => {
   const experiences = [
     {
+      company: 'Taar',
+      role: 'Software Development Engineer Intern',
+      period: 'September 2026 – Present',
+      mode: 'Bangalore / Hybrid',
+      current: true,
+      description: [
+        'Building scalable backend services and RESTful APIs that power core product features, focusing on reliability and clean architecture.',
+        'Collaborating with cross-functional teams on design, code reviews, and end-to-end delivery of customer-facing engineering solutions.',
+        'Writing production-grade code in Python, integrating databases and cloud services to support growing user traffic.',
+        'Contributing to system design discussions and applying software engineering best practices to improve maintainability and performance.',
+      ],
+      skills: ['Python', 'FastAPI', 'SQL', 'AWS', 'System Design', 'Git'],
+      impact: 'Contributing to live product engineering at Taar while strengthening full-stack SDE fundamentals in a fast-paced startup environment.',
+    },
+    {
       company: 'iStudio',
       role: 'Data Science Intern',
       period: 'February 2026 – May 2026',
