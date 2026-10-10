@@ -7,7 +7,7 @@ const InternshipSection = () => {
     {
       company: 'Taar',
       role: 'Software Development Engineer Intern',
-      period: 'September 2026 – Present',
+      period: 'September 2026',
       mode: 'Bangalore / Hybrid',
       current: false,
       description: [
