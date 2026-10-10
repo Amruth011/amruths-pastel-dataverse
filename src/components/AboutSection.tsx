@@ -35,7 +35,7 @@ const AboutSection = () => {
                 I'm drawn to problems where ML can automate complex decision-making: turning unstructured data into actionable intelligence, orchestrating multi-step AI agents, and leveraging vector search for semantic understanding at scale.
               </p>
               <p className="text-muted-foreground/80 leading-relaxed text-sm">
-                Completed B.Tech in AI & Data Science at Reva University (coursework completed May 2026, degree conferral November 2026). Available to join immediately.
+                B.Tech in AI & Data Science from Reva University, graduating November 2026. Available to join immediately.
               </p>
 
               <div className="pt-4 space-y-3">
