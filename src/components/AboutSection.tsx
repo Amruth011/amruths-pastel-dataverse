@@ -35,13 +35,13 @@ const AboutSection = () => {
                 I'm drawn to problems where ML can automate complex decision-making: turning unstructured data into actionable intelligence, orchestrating multi-step AI agents, and leveraging vector search for semantic understanding at scale.
               </p>
               <p className="text-muted-foreground/80 leading-relaxed text-sm">
-                Completed B.Tech in AI & Data Science at Reva University (coursework completed May 2026, degree conferral November 2026). Available to join immediately.
+                B.Tech in AI & Data Science from Reva University, graduating November 2026. Available to join immediately.
               </p>
 
               <div className="pt-4 space-y-3">
                 <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-widest">Education</p>
                 {[
-                  { num: '01', text: 'B.Tech AI & Data Science — Reva University', year: 'Dec 2023 – May 2026 · Degree conferral Nov 2026' },
+                  { num: '01', text: 'B.Tech AI & Data Science — Reva University', year: 'Dec 2023 – Nov 2026' },
                   { num: '02', text: 'Diploma EEE — D S Dinakar National Polytechnic', year: '2020–2023' },
                 ].map((edu) => (
                   <div key={edu.num} className="group hover:bg-accent/30 px-3 py-2 -mx-3 rounded-md transition-colors duration-200">
@@ -55,14 +55,12 @@ const AboutSection = () => {
               </div>
 
               <div className="pt-2">
-                <div className="rounded-lg border border-border bg-card/40 p-4 space-y-3">
-                  <p className="text-xs font-mono text-primary uppercase tracking-widest">Now — Aug 2026</p>
-                  <div className="space-y-2 text-sm text-muted-foreground/90 leading-relaxed">
-                    <p>🔨 Building: Lumina JD Scanner (live) — LLM-based JD decoding, skill-gap analysis & resume tailoring</p>
-                    <p>🎯 Seeking: Full-time AI Engineer / GenAI roles — immediate joiner</p>
-                  </div>
-                </div>
+                <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-widest">Experience</p>
+                <p className="text-sm text-muted-foreground/80 leading-relaxed">
+                  Software Development Engineer Intern at Taar (Sep 2026) · Data Science Intern at iStudio (Feb – May 2026)
+                </p>
               </div>
+
             </SectionReveal>
 
             <SectionReveal className="md:col-span-2" delay={0.2} direction="right">
