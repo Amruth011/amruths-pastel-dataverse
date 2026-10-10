@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Sparkle } from 'lucide-react';
+import { MessageSquare, X, Send, Sparkle, ChevronDown } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { trackEvent } from '@/lib/analytics';
 
@@ -33,6 +33,9 @@ const ChatWidget = () => {
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [showFollowUps, setShowFollowUps] = useState(false);
+  const asked = new Set(messages.filter((m) => m.role === 'user').map((m) => m.text));
+  const remainingReplies = QUICK_REPLIES.filter((q) => !asked.has(q));
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -47,6 +50,7 @@ const ChatWidget = () => {
   const handleSend = async (text: string = input) => {
     if (!text.trim() || isLoading) return;
 
+    setShowFollowUps(false);
     const userMsg: Message = { id: Date.now().toString(), role: 'user', text: text.trim() };
     setMessages((prev) => [...prev, userMsg]);
     setInput('');
@@ -134,6 +138,27 @@ const ChatWidget = () => {
                   </div>
                 </motion.div>
               ))}
+              {!isLoading && messages[messages.length - 1]?.role === 'ai' && remainingReplies.length > 0 && (
+                <div className="pl-1">
+                  <button
+                    onClick={() => setShowFollowUps((v) => !v)}
+                    aria-expanded={showFollowUps}
+                    className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-primary/80 hover:text-primary transition-colors"
+                  >
+                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showFollowUps ? 'rotate-180' : ''}`} aria-hidden="true" />
+                    {showFollowUps ? 'Hide follow-up questions' : 'Follow-up questions'}
+                  </button>
+                  {showFollowUps && (
+                    <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-2 flex flex-wrap gap-2">
+                      {remainingReplies.map((reply) => (
+                        <button key={reply} onClick={() => handleSend(reply)} className="font-mono text-[11px] rounded-full border border-primary/20 bg-primary/[0.04] px-3 py-1.5 text-primary/80 hover:border-primary/50 hover:text-primary hover:bg-primary/[0.08] transition-colors">
+                          {reply}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
+              )}
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm bg-white/[0.04] border border-border/40 px-4 py-3">
@@ -145,15 +170,6 @@ const ChatWidget = () => {
               )}
             </div>
 
-            {messages.length < 6 && !isLoading && (
-              <div className="px-4 pb-2 flex flex-wrap gap-2">
-                {QUICK_REPLIES.map((reply) => (
-                  <button key={reply} onClick={() => handleSend(reply)} className="font-mono text-[11px] rounded-full border border-primary/20 bg-primary/[0.04] px-3 py-1.5 text-primary/80 hover:border-primary/50 hover:text-primary hover:bg-primary/[0.08] transition-colors">
-                    {reply}
-                  </button>
-                ))}
-              </div>
-            )}
 
             <div className="border-t border-border/40 p-3">
               <div className="flex items-center gap-2 rounded-xl bg-white/[0.03] border border-border/40 px-3 py-2 focus-within:border-primary/40 transition-colors">
