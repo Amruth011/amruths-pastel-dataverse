@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-const SITE_URL = "https://amruthportfolio.lovable.app";
+const SITE_URL = "https://amruthportfolio.vercel.app";
 
 const setMeta = (selector: string, attr: string, value: string) => {
   let el = document.head.querySelector(selector) as HTMLMetaElement | HTMLLinkElement | null;
