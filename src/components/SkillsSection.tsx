@@ -5,15 +5,14 @@ import SectionReveal from './SectionReveal';
 
 const SkillsSection = () => {
   const categories = [
-    { title: 'AI Engineering', skills: ['AI System Design', 'LLMs', 'GenAI', 'LLM Integration', 'Agent Architecture', 'Multi-Agent Systems', 'Model Optimization', 'Inference Pipelines', 'AI Application Development', 'Responsible AI / AI Safety'] },
-    { title: 'Machine Learning', skills: ['Scikit-learn', 'XGBoost', 'LightGBM', 'Model Evaluation', 'Feature Engineering', 'Statistical Analysis', 'A/B Testing'] },
-    { title: 'Deep Learning & Frameworks', skills: ['PyTorch', 'TensorFlow', 'Keras', 'Hugging Face', 'Fine-tuning'] },
-    { title: 'Data Science', skills: ['Pandas', 'NumPy', 'Data Analysis', 'Data Visualization', 'Hadoop', 'Apache Spark'] },
-    { title: 'Agentic AI & RAG', skills: ['LangChain', 'LlamaIndex', 'Vector Databases', 'Prompt Engineering', 'RAG Pipelines', 'OpenAI API'] },
-    { title: 'Natural Language Processing', skills: ['Text Processing', 'Embeddings', 'Semantic Search', 'Transformers/BERT/GPT', 'NLP Pipelines'] },
-    { title: 'Computer Vision', skills: ['OpenCV', 'CNNs', 'Object Detection (YOLO)', 'Image Segmentation', 'Image Processing', 'OCR Systems'] },
-    { title: 'Cloud & MLOps', skills: ['MLOps', 'AWS (SageMaker)', 'Azure', 'GCP', 'MLflow', 'Kubernetes', 'Apache Airflow', 'FastAPI'] },
-    { title: 'Tools & DevOps', skills: ['Docker', 'CI/CD Pipelines', 'REST APIs', 'Git/GitHub'] },
+    { title: 'AI Engineering', skills: ['AI System Design', 'LLMs', 'GenAI', 'LLM Integration', 'Agent Architecture', 'Prompt Engineering', 'Responsible AI / AI Safety'] },
+    { title: 'RAG & Retrieval', skills: ['RAG Pipelines', 'ChromaDB', 'Rank-BM25', 'Hybrid Search', 'Reciprocal Rank Fusion (RRF)', 'Cross-Encoder Reranking', 'RAGAS Evaluation', 'Semantic Search', 'Embeddings'] },
+    { title: 'LLM & Model APIs', skills: ['Gemini', 'Groq', 'OpenAI API', 'Sarvam AI (Indic TTS)', 'Multi-Model Fallback Chains'] },
+    { title: 'Machine Learning', skills: ['Scikit-learn', 'XGBoost', 'SHAP Explainability', 'Feature Engineering', 'Model Evaluation', 'Statistical Analysis', 'A/B Testing'] },
+    { title: 'Data Processing & Big Data', skills: ['Python', 'Pandas', 'NumPy', 'PySpark', 'Delta Lake', 'Data Pipelines', 'Data Visualization'] },
+    { title: 'OCR & NLP', skills: ['EasyOCR', 'OCR Pipelines', 'Indic Language NLP (Kannada)', 'Text Processing'] },
+    { title: 'Backend & APIs', skills: ['FastAPI', 'REST APIs', 'Kotlin', 'Dropwizard', 'Streamlit'] },
+    { title: 'Cloud & DevOps', skills: ['Docker', 'Kubernetes', 'Azure', 'GitHub Actions (CI/CD)', 'Git/GitHub'] },
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
